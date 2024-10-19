@@ -52,3 +52,52 @@ SAMPLE INPUT:
 SAMPLE OUTPUT:
 3
 '''
+
+Homework:
+
+This is the github page where you can find the problems and answer we work on in class:
+https://github.com/foojanbabaeeian/CodingMinds
+
+Here is the google drive I told you about:
+https://drive.google.com/drive/folders/18nfNBBP-h4hgUJxX1hB2DFE7DPMZ2OJ9?usp=sharing
+
+Your homework is reading more about binary search:
+Binary Search
+Binary Search Fundamentals
+A complete explanation about binary search can be found at: https://www.geeksforgeeks.org/binary-search/
+
+Recursive
+Non-recursive (preferred)
+java
+// binary search
+public static int binarySearch(int[] nums, int target) {
+int left = 0;
+int right = nums.length - 1;
+
+    while(left <= right) {
+      int middle = left + (right - left) / 2;
+      if (nums[middle] == target) {
+        return middle;
+      }
+      if (nums[middle] > target) {
+        right = middle - 1;
+      }
+      if (nums[middle] < target) {
+        left = middle + 1;
+      }
+    }
+
+    return -1;
+
+}
+Variants of Binary Search
+Based on the standard binary search version shown above, could you please try to solve the following version of the binary search (please see the link below for the complete description of each variant):
+
+Index of first occurrence of a key
+Index of last occurrence of a key
+Index of least element greater than key
+Index of greatest element less than key
+Please see the reference here and make sure that you understand all these variants: https://www.geeksforgeeks.org/variants-of-binary-search/
+
+Lecture Video
+Youtube Lecture Link: https://www.youtube.com/watch?v=H1Jo-WzHTIc
