@@ -1,8 +1,8 @@
 '''
-Problem 5
-What is the problem with the following code?
+Problem 1
+Given a list of strings and a string variable target, write a program that checks whether the string variable target exists inside the list.
 
 python
-names = ["Kevin", "Chris", "Mayami"]
-print(names[10])
+names = ['Eve', 'Alice', 'Bob', 'Ivan', 'Gary', 'Claudia', 'Brooks', 'Lappland']
+target = 'Gary'
 '''
