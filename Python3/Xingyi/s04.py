@@ -34,17 +34,21 @@ while True:
             if event.key == pygame.K_w:
                 # Draw a green rectangle at a random position
                 pygame.draw.circle(screen, (0, 255, 255), (random.randint(1, 400), random.randint(1, 450)), 5)
+                game_text.draw()
             elif event.key == pygame.K_a:
                 pygame.draw.circle(screen, (255, 255, 0), (random.randint(1, 400), random.randint(1, 450)), 2)
+                game_text.draw()
             elif event.key == pygame.K_s:
                 pygame.draw.circle(screen, (0, 255, 0), (random.randint(1, 400), random.randint(1, 450)), 6)
+                game_text.draw()
             elif event.key == pygame.K_d:
                 pygame.draw.circle(screen, (255, 0, 255), (random.randint(1, 400), random.randint(1, 450)), 4)
+                welcome.draw()
     game_text = Text(screen, "Hello Christina!", 20, (255, 0, 255), 250, 5)
     welcome = Text(screen, "I hope you are having fun in the class!", 20, (255, 0, 0), 250, 50)
 
-    game_text.draw()
-    welcome.draw()
+    # game_text.draw()
+    # welcome.draw()
     pygame.display.update()
     clock.tick(60)
 

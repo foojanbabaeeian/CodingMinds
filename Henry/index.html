@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paint App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="toolbar">
+    <label>Brush Size:
+      <input type="range" id="brushSize" min="1" max="50" value="5">
+    </label>
+    <label>Brush Color:
+      <input type="color" id="brushColor" value="#000000">
+    </label>
+    <button id="clearCanvas">Clear</button>
+  </div>
+  <canvas id="paintCanvas"></canvas>
+  <script src="app.js"></script>
+</body>
+</html>
