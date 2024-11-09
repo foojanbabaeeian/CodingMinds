@@ -66,5 +66,6 @@ user_list.append("Kody")
 # remove
 user_list.remove("Adam")
 
+user_list.pop(4)
 for i in user_list:
     print(i)
