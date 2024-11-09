@@ -30,7 +30,7 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
-        pygame.mixer.music.load("../Adam/bubble.mp3")
+        pygame.mixer.music.load("bubble.mp3")
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w:
                 # Draw a green rectangle at a random position
