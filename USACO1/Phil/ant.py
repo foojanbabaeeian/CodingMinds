@@ -9,6 +9,8 @@
 #         x+=1
 #         gay(x,n)
 # gay(1,9)
+import time
+start = time.time()
 def fizz(x,y):
     if x%3 ==0:
         if x%5 ==0:
@@ -16,14 +18,14 @@ def fizz(x,y):
             x+=1
             if x==y:
                 print("Fizz Buzz")
-            return
+                return
             fizz(x,y)
         else:
             print("Fizz")
             x+=1
             if x==y:
                 print("Fizz")
-            return
+                return
             fizz(x,y)
     elif x%5 ==0:
         print("Buzz")
@@ -39,4 +41,5 @@ def fizz(x,y):
             print(x)
             return
         fizz(x,y)
-fizz(1,50)
+fizz(1,100)
+print(time.time() - start)
