@@ -10,12 +10,12 @@
 #         gay(x,n)
 # gay(1,9)
 def fizz(x,y):
-    if type(x/3)== int:
-        if type(x/5)== int:
+    if x%3 ==0:
+        if x%5 ==0:
             print("Fizz Buzz")
         else:
             print("Fizz")
-    elif type(x/5)== int:
+    elif x%5 ==0:
         print("Buzz")
     else:
         print(x)
@@ -23,4 +23,5 @@ def fizz(x,y):
         if x==50:
             print(x)
             return
+        fizz(x,y)
 fizz(1,50)
