@@ -42,5 +42,7 @@
 # fizz(1,50)
 s1 ="noob"
 s2 ="boon"
-if s1.__len__==s2.__len__:
-    print("ture")
+dict = {}
+if len(s1)==len(s2):
+    for i in range(len(s1)):
+        if i in 
