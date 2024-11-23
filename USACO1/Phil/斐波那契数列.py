@@ -18,3 +18,4 @@ for i in range(n-1):
     x, y = y, x + y
     # chatgpt give me a way called tuple unpacking
 print(x)
+#gpt also teached me binet and matrix, and I found out we will learn it at ap cal or college, tf
