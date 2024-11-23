@@ -16,14 +16,14 @@ def fizz(x,y):
             x+=1
             if x==y:
                 print("Fizz Buzz")
-            return
+                return
             fizz(x,y)
         else:
             print("Fizz")
             x+=1
             if x==y:
                 print("Fizz")
-            return
+                return
             fizz(x,y)
     elif x%5 ==0:
         print("Buzz")
