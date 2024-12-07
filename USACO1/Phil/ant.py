@@ -42,7 +42,6 @@
 # fizz(1,50)
 s1 ="noob"
 s2 ="boon"
-<<<<<<< Updated upstream
 dict = {}
 tcid = {}
 if len(s1)==len(s2):
@@ -57,9 +56,6 @@ if len(s1)==len(s2):
         else:
             tcid[i]=1
     for i in dict:
-        if i == dict[i]:
+        if i == tcid[i]:
             print("ture")
 
-=======
-dict = {}
->>>>>>> Stashed changes
