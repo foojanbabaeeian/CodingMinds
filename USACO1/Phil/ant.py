@@ -43,6 +43,19 @@
 s1 ="noob"
 s2 ="boon"
 dict = {}
+tcid = {}
 if len(s1)==len(s2):
-    for i in range(len(s1)):
-        if i in 
+    for i in s1:
+        if i in dict:
+            dict[i]+=1
+        else:
+            dict[i]=1
+    for i in s2:
+        if i in tcid:
+            tcid[i]+=1
+        else:
+            tcid[i]=1
+    for i in dict:
+        if i == dict[i]:
+            print("ture")
+
