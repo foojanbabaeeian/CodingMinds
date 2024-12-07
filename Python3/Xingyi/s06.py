@@ -32,7 +32,7 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.x = random.randint(0, 400)
         self.rect.y = random.randint(0, 400)
         self.speed = 2
-    def update(self, keys):
+    def update(self):
         self.rect.x += self.speed
         self.rect.y += self.speed
         self.rect.x = max(0, min(500 - self.rect.width, self.rect.x))
