@@ -42,44 +42,33 @@
 # fizz(1,50)
 import time
 start=time.time()
-dict = {}
-tcid = {}
-<<<<<<< Updated upstream
-if len(s1)==len(s2):
-    for i in s1:
-        if i in dict:
-            dict[i]+=1
-        else:
-            dict[i]=1
-    for i in s2:
-        if i in tcid:
-            tcid[i]+=1
-        else:
-            tcid[i]=1
-    for i in dict:
-        if i == tcid[i]:
-            print("ture")
-
-=======
-def gay(s1,s2):
-    if len(s1)==len(s2):
-        for i in s1:
-            if i in dict:
-                dict[i]+=1
-            else:
-                dict[i]=1
-        for i in s2:
-            if i in tcid:
-                tcid[i]+=1
-            else:
-                tcid[i]=1
-        for i in dict:
-            if i in tcid:
-                if dict[i] != tcid[i]:
-                    return False                    
-                else:
-                    pass
-        return True
-print(gay("noob","boon"))
+# dict = {}
+# tcid = {}
+# def gay(s1,s2):
+#     if len(s1)==len(s2):
+#         for i in s1:
+#             if i in dict:
+#                 dict[i]+=1
+#             else:
+#                 dict[i]=1
+#         for i in s2:
+#             if i in tcid:
+#                 tcid[i]+=1
+#             else:
+#                 tcid[i]=1
+#         for i in dict:
+#             if i in tcid:
+#                 if dict[i] != tcid[i]:
+#                     return False                    
+#                 else:
+#                     pass
+#         return True
+# print(gay("noob","boon"))
+boo =[1,79,2,8,4]
+boo.sort()
+product = 1
+start = -1
+for i in range(3):
+    product *= boo[start] 
+    start -= 1
 print(time.time()-start)
->>>>>>> Stashed changes
