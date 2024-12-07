@@ -42,6 +42,7 @@
 # fizz(1,50)
 import time
 start=time.time()
+<<<<<<< Updated upstream
 # dict = {}
 # tcid = {}
 # def gay(s1,s2):
@@ -71,4 +72,28 @@ start = -1
 for i in range(3):
     product *= boo[start] 
     start -= 1
+=======
+dict = {}
+tcid = {}
+def gay(s1,s2):
+    if len(s1)==len(s2):
+        for i in s1:
+            if i in dict:
+                dict[i]+=1
+            else:
+                dict[i]=1
+        for i in s2:
+            if i in tcid:
+                tcid[i]+=1
+            else:
+                tcid[i]=1
+        for i in dict:
+            if i in tcid:
+                if dict[i] != tcid[i]:
+                    return False                    
+                else:
+                    pass
+        return True
+print(gay("noob","boon"))
+>>>>>>> Stashed changes
 print(time.time()-start)
