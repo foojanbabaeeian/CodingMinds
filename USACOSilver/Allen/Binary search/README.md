@@ -101,3 +101,6 @@ Please see the reference here and make sure that you understand all these varian
 
 Lecture Video
 Youtube Lecture Link: https://www.youtube.com/watch?v=H1Jo-WzHTIc
+
+
+https://usaco.org/index.php?page=viewproblem2&cpid=858
