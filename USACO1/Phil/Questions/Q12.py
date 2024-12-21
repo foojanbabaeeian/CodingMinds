@@ -12,4 +12,11 @@ print(factorial(4))
 # output: 5040
 # 4 factorial = 7 x 6 x 5 
 '''
-print("Hi")
+import time
+start = time.time()
+product = 1
+n = 30
+for i in range(1, n+1):
+    product = product * i
+print(product)
+print(time.time() - start)
