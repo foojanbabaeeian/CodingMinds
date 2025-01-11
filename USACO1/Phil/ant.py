@@ -92,6 +92,7 @@ start=time.time()
 #     if x==bis:
 #         print(gays)
 gpa =[1,2,3,4,5,6]
+gpa.sort
 x=0
 for gay in gpa:
     x=x+gay
