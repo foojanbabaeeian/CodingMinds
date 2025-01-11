@@ -22,12 +22,11 @@ gay=[]
 gayy=0
 for num in nums:
     if num in gay:
-        print("boo")
+        pass
     else:
-        if gay.count(num)>= 1:
+        if nums.count(num)>= 1:
             gayy+=1
             gay.append(num)
         else:
             pass
-    print(gay, gayy)
 print(gayy)
