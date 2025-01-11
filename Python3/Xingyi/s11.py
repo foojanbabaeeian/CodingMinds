@@ -84,8 +84,24 @@ enemy = Enemy(cat_img, 0.6, 0, 0)
 enemy_group = pygame.sprite.Group()
 enemy_group.add(enemy)  
 
+# GAME_FONT = pygame.freetype.Font("Comic Sans MS", 24)
+def text_to_screen(screen, text, x, y, size = 50,
+            color = (255, 255, 255), font_type = 'happy.ttf'):
+    try:
+
+        text = str(text)
+        font = pygame.font.Font(font_type, size)
+        text = font.render(text, True, color)
+        screen.blit(text, (x, y))
+
+    except Exception:
+        print ('Font Error, saw it coming')
 
 while True:
+  score = 1
+  # pygame.display.set_caption(f" Score: {score}")
+  text_to_screen(screen, 'Score {}'.format(score), 10, 10)
+
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       pygame.quit()
