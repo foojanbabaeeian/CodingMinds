@@ -91,10 +91,17 @@ start=time.time()
 #     x =len(gays)
 #     if x==bis:
 #         print(gays)
-gpa =[1,2,3,4,5,6]
-gpa.sort
-x=0
-for gay in gpa:
-    x=x+gay
-print(x/len(gpa))
+# gpa =[1,2,3,4,5,6]
+# gpa.sort
+# x=0 
+# for gay in gpa:
+#     x=x+gay
+# print(x/len(gpa))
+# print(time.time()-start)
+import math
+gpa =[3.5,2.5,3.7,3.14,3.42]
+gpa.sort()
+z=3*((len(gpa)+1)/4)
+print(round(z))
+print(gpa[int(z-1)])
 print(time.time()-start)
