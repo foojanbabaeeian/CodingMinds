@@ -1,12 +1,20 @@
 import pygame
-
+import random
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, x, y):
+    def __init__(self):
         super().__init__()
         self.image = pygame.Surface((50, 50))
         self.image.fill((255, 0, 0))
         self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)
+        self.rect.topleft = (random.randint(0,500), random.randint(0,500))
+        
+class Ability(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.Surface((50, 50))
+        self.image.fill((44,255,5))
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (random.randint(0,500), random.randint(0,500))
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
@@ -38,12 +46,17 @@ clock = pygame.time.Clock()
 
 # Create sprite objects
 player = Player()
-opponent1 = Enemy(100, 100)  # Set initial position
-opponent2 = Enemy(300, 300)  # Set initial position
+opponent1 = Enemy()  # Set initial position
+opponent2 = Enemy()  # Set initial position
+opponent3 = Enemy()
+
+ability = Ability()
+ability_group = pygame.sprite.Group()
+ability_group.add(ability)
 
 # Create sprite group for opponents
 opponent_group = pygame.sprite.Group()
-opponent_group.add(opponent1, opponent2)
+opponent_group.add(opponent1, opponent2, opponent3)
 
 # Main game loop
 while True:
@@ -58,12 +71,19 @@ while True:
     # Check for collisions
     hit_list = pygame.sprite.spritecollide(player, opponent_group, False)
     for hit in hit_list:
-        print("Collided!")
+        print("Wompity Womp!")
+        pygame.quit()
+        quit()
+    hit_list = pygame.sprite.spritecollide(player, ability_group, False)
+    for hit in hit_list:
+        print("yayi!")
 
     # Draw everything
     screen.fill((0, 0, 0))
     screen.blit(player.image, player.rect)
     opponent_group.draw(screen)
+    ability_group.draw(screen)
+
     pygame.display.update()
 
     clock.tick(60)

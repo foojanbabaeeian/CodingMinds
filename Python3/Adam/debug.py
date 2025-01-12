@@ -54,7 +54,7 @@ while True:
     keys = pygame.key.get_pressed()
     
     christina.update(keys)
-    fooj.update()
+    fooj.update(keys)
     screen.blit(christina.image, christina.rect)  # Draw player
     screen.blit(fooj.image, fooj.rect)  # Draw enemy
     
