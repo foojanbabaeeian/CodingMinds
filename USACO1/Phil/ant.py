@@ -98,10 +98,68 @@ start=time.time()
 #     x=x+gay
 # print(x/len(gpa))
 # print(time.time()-start)
-import math
-gpa =[3.5,2.5,3.7,3.14,3.42]
-gpa.sort()
-z=3*((len(gpa)+1)/4)
-print(round(z))
-print(gpa[int(z-1)])
+# import math
+# gpa =[3.5,2.5,3.7,3.14,3.42]
+# gpa.sort()
+# z=3*((len(gpa)+1)/4)
+# print(round(z))
+# print(gpa[int(z-1)])
+'''
+Practice Question 17: Maximum of Three Numbers
+Write a function that finds the maximum of the three numbers. Try not to use Python's built in functions such as sort().
+
+Example 1:
+
+python
+# output: 15
+print(max(3, 15, 9))
+Example 2:
+
+python
+# output: 0
+print(max(-1, -4, 0))
+
+Practice Question 18: Rounding Numbers
+Write a function that rounds a number to the 2nd place. Try not to use Python's built in functions such as round().
+
+Example 1:
+
+python
+# output: 3.14
+print(roundNum(3.1415926))
+Example 2:
+
+python
+# output: 2.72
+print(roundNum(2.718281828))'''
+# gays = [0,90,1]
+# x=0
+# for gay in gays:
+#     if gay < x: 
+#         pass
+#     else:
+#         x=gay
+# print(x)
+'''
+Rounding Numbers
+Write a function that rounds a number to the 2nd place. Try not to use Python's built in functions such as round().
+
+Example 1:
+
+python
+# output: 3.14
+print(roundNum(3.1415926))
+Example 2:
+
+python
+# output: 2.72
+print(roundNum(2.718281828))'''
+gay = 3.1475926
+gaystr = str(gay)
+if int(gaystr[4])>4:
+    gaystr = float(gaystr[:4])+0.01
+    print(gaystr)
+else:
+    print(gaystr[:4])
 print(time.time()-start)
+#
