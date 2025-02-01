@@ -166,3 +166,9 @@ print(roundNum(2.718281828))'''
 
 print(time.time()-start)
 
+
+nums = [1, 6, 5, 2, 10]
+
+# output: 9
+# This is because 10 - 1 = 9
+print(maxDifference(nums))
