@@ -154,12 +154,15 @@ Example 2:
 python
 # output: 2.72
 print(roundNum(2.718281828))'''
-gay = 3.1475926
-gaystr = str(gay)
-if int(gaystr[4])>4:
-    gaystr = float(gaystr[:4])+0.01
-    print(gaystr)
-else:
-    print(gaystr[:4])
+# gay = 3.1475926
+# gaystr = str(gay)
+# if int(gaystr[4])>4:
+#     gaystr = float(gaystr[:4])+0.01
+#     print(gaystr)
+# else:
+#     print(gaystr[:4])
+
+
+
 print(time.time()-start)
-#
+
