@@ -98,10 +98,11 @@ start=time.time()
 #     x=x+gay
 # print(x/len(gpa))
 # print(time.time()-start)
-import math
-gpa =[3.5,2.5,3.7,3.14,3.42]
-gpa.sort()
-z=3*((len(gpa)+1)/4)
-print(round(z))
-print(gpa[int(z-1)])
-print(time.time()-start)
+# import math
+# gpa =[3.5,2.5,3.7,3.14,3.42]
+# gpa.sort()
+# z=3*((len(gpa)+1)/4)
+# print(round(z))
+# print(gpa[int(z-1)])
+
+print(time.time()-start) 
