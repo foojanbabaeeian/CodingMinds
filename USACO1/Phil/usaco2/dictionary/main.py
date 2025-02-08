@@ -17,6 +17,7 @@ dict = { "Andrew": 27, "Kevin": 35, "Rapi": 18, "Dola": 29 }
 key = dict.keys()
 print(key)
 
+'''
 d = {}      # this is one way of creating an empty dictionary
 
 # dictionary with string keys
@@ -39,4 +40,9 @@ python
 dict = { "Andrew": 27, "Kevin": 35, "Rapi": 18, "Dola": 29 }
 
 # expected dictionary
-flipped = { 27: "Andrew", 35: "Kevin", 18: "Rapi", 29: "Dola" }
+flipped = { 27: "Andrew", 35: "Kevin", 18: "Rapi", 29: "Dola" }'''
+gayyyyy={}
+for gay in dict:
+    
+    gayyyyy[dict[gay]] = gay
+print(gayyyyy)
