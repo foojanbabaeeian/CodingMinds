@@ -161,14 +161,15 @@ print(roundNum(2.718281828))'''
 #     print(gaystr)
 # else:
 #     print(gaystr[:4])
+gay = ["g","a","y"]
 
-
-
+def gayyyy(gay,times):
+    ans=[]
+    for gays in gay:
+        for i in range(times):
+            ans.append(gays)
+    print(ans)
+gayyyy(gay,8)
 print(time.time()-start)
-
-
-nums = [1, 6, 5, 2, 10]
-
 # output: 9
 # This is because 10 - 1 = 9
-print(maxDifference(nums))
