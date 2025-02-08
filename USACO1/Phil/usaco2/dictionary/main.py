@@ -11,3 +11,8 @@ dict = { "Andrew": 27, "Kevin": 35, "Rapi": 18, "Dola": 29 }
 # expected values in the list
 keys = ["Andrew", "Kevin", "Rapi", "Dola"]
 '''
+dict = { "Andrew": 27, "Kevin": 35, "Rapi": 18, "Dola": 29 }
+
+# expected values in the list
+key = dict.keys()
+print(key)
