@@ -17,18 +17,25 @@
 #     else:
 #         print("no")
 # val()
-s = "ab#c"
-t = "ad#c"
+s = "y#f#o##f"
+t = "y#fo##f"
 gay = []
 gays =[]
 for i in s:
     if i == "#":
-        gay.pop()
+        if len(gay) != 0:
+            gay.pop()
+        else:
+            pass
     else:
         gay.append(i)
 for i in t:
     if i == "#":
-        gays.pop()
+        if len(gays) != 0:
+            gays.pop()
+        else:
+            pass
+            gays.pop()
     else:
         gays.append(i)
 if gay == gays:
