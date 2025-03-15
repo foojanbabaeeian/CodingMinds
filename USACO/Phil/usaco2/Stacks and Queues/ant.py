@@ -17,28 +17,27 @@
 #     else:
 #         print("no")
 # val()
-s = "y#f#o##f"
-t = "y#fo##f"
-gay = []
-gays =[]
-for i in s:
-    if i == "#":
-        if len(gay) != 0:
-            gay.pop()
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        gay = []
+        gays =[]
+        for i in s:
+            if i == "#":
+                if len(gay) != 0:
+                    gay.pop()
+                else:
+                    pass
+            else:
+                gay.append(i)
+        for i in t:
+            if i == "#":
+                if len(gays) != 0:
+                    gays.pop()
+                else:
+                    pass
+            else:
+                gays.append(i)
+        if gay == gays:
+            return True
         else:
-            pass
-    else:
-        gay.append(i)
-for i in t:
-    if i == "#":
-        if len(gays) != 0:
-            gays.pop()
-        else:
-            pass
-            gays.pop()
-    else:
-        gays.append(i)
-if gay == gays:
-    print("true")
-else:
-    print("false")
+            return False
