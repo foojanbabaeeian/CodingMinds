@@ -17,8 +17,8 @@
 #     else:
 #         print("no")
 # val()
-s = "abc#c"
-t = "abbc"
+s = "ab#c"
+t = "ad#c"
 gay = []
 gays =[]
 for i in s:
@@ -27,7 +27,7 @@ for i in s:
     else:
         gay.append(i)
 for i in t:
-    if i == "#"
+    if i == "#":
         gays.pop()
     else:
         gays.append(i)
