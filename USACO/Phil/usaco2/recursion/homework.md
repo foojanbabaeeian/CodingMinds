@@ -1,8 +1,8 @@
-## L6 Assessment - Recursion
+·## L6 Assessment - Recursion
 ### Problem 1
 
 Use your own words, explain what is recursion.
-
+doing sth again and agin till achieve sth
 ### Problem 2
 
 Convert the following code from a recursive function into a loop.
