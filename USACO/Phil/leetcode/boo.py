@@ -120,10 +120,6 @@ def problem2():
                 ans += i
             return int(ans)
         
-
-
-
-
 '''
 Practice Question 3: Array Partition
 Problem Statement
