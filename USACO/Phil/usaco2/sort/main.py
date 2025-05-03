@@ -8,7 +8,8 @@ list.insert(1, 2)
 # [1, 200, 3, 4, 5]
 print(list)
 '''
-
+x=0
+y=0
 nums = [1,2, 5, 7, 8, 3, 6, 8, 3]
 
 def bubble_sort(nums):
@@ -35,4 +36,12 @@ We keep doing this until we get all elements moved to correct position.
 我们继续这样做，直到所有元素都移动到正确的位置。
 '''
 
-def selection_sort(nums):
+def selection_sort(nums,x,y):
+    while y != len(nums):
+        for i in nums:
+            if i >=x:
+                x=i
+        nums.insert(x)
+        y=y+1
+selection_sort(nums,x,y)
+print(nums)
