@@ -8,9 +8,8 @@ list.insert(1, 2)
 # [1, 200, 3, 4, 5]
 print(list)
 '''
-x=0
-y=0
-nums = [1,2, 5, 7, 8, 3, 6, 8, 3]
+
+
 
 def bubble_sort(nums):
     n = len(nums)
@@ -35,13 +34,38 @@ We keep doing this until we get all elements moved to correct position.
 然后我们在剩余元素中找到最小的（或第二小的）并将其与第二个元素交换。
 我们继续这样做，直到所有元素都移动到正确的位置。
 '''
-
-def selection_sort(nums,x,y):
-    while y != len(nums):
-        for i in nums:
-            if i >=x:
-                x=i
-        nums.insert(x)
+nums = [1,2, 5, 7, 8, 3, 6, 8, 3]
+final = []
+def selection_sort(nums): 
+    y=0
+    while y < len(nums):
+        x=0
+        for i in range(y, len(nums)):
+            print(nums[i])
+            if nums[i] <=x:
+                x= nums[i]
+        nums[y] = x    
         y=y+1
-selection_sort(nums,x,y)
+    print(nums)
+selection_sort(nums)
 print(nums)
+
+def selection_sort(arr):
+    n = len(arr)
+    for i in range(n - 1):
+      
+        # Assume the current position holds
+        # the minimum element
+        min_idx = i
+        
+        # Iterate through the unsorted portion
+        # to find the actual minimum
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_idx]:
+              
+                # Update min_idx if a smaller element is found
+                min_idx = j
+        
+        # Move minimum element to its
+        # correct position
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
