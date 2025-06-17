@@ -77,7 +77,24 @@ count and return
 
 create a new dictioanry -> include the keys which are the numbers and the values which are the count 
 '''
+
+
 def mostCommon(nums):
     count_dic = {}
     for i in nums:
-        count_dic[i] = 
+        if i in count_dic:
+            count_dic[i] += 1
+        else:
+            count_dic[i] = 1
+    max = 0
+    number_max = 0
+    for number, count in count_dic.items():
+        if count > max:
+            max = count
+            number_max = number
+    return number_max
+
+nums = [3, 1, 1, 2, 1, 1, 3, 2, 2, 3]
+
+# output: 1
+print(mostCommon(nums))
