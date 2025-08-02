@@ -68,3 +68,38 @@ Constraints:
 -109 <= target <= 109
 Only one valid answer exists.
 '''
+
+
+
+# return the indexes of the two numbers that sum of them gives us the target
+
+# nums = {4:0, 7:1, 1:2, 6:3}
+'''
+the value should be indexes 
+
+1. make the dictionary 
+3. we use the first i and we get the value target - i and assign it to a variable 
+4. We get the variable and see if it is equal to any keys in the dictionary besides i  
+5. return the value of the key that is equal to the variable. 
+'''
+
+nums = [4, 7, 1, 6]
+target = 10
+
+dictionary_nums = {}
+index = 0
+for i in nums: 
+    dictionary_nums[i] = index
+    index += 1
+
+for element in dictionary_nums:
+    second = target - element
+    if second in dictionary_nums and second is not element:
+       print(dictionary_nums[element], dictionary_nums[second]) 
+
+
+students = {20: 'Harry' , 80: 'Foojan',  50:'jordan'}
+name = 'Harry'
+target = 100
+if target - 20 in students:
+    print(students[target-20])
