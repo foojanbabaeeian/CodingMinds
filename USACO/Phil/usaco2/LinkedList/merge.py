@@ -35,14 +35,27 @@ print(mergeLinkedLists(list1, list2))
 
 '''
 
-list1 = [1 -> 2 -> 6]
-list2 = [1 -> 3 -> 10]
+# list1 = [1 -> 2 -> 6]
+# list2 = [1 -> 3 -> 10]
 
 # output: [1 -> 1 -> 2 -> 3 -> 6 -> 10]
-print(mergeLinkedLists(list1, list2))
+print(ml(list1, list2))
 
 class ListNode:
     def __init__(self, data = 0, next = None):
         self.data = data
         self.next = next
+def ml(list1,list2):
+    temp = list1.head
+    tempa = list2.head
+    tempswap = list2.head
+    while temp!=None and tempa!= None:
+        if temp <= tempa:
+            temp.next
+        elif temp == tempa:
+            tempa.next = temp.next
+            temp.next=tempa
+            
+        
+
 
