@@ -1,4 +1,3 @@
-guys = ["Phil", "alvin"]
 class Node:
     def __init__(self,data):
         self.data=data
