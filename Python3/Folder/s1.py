@@ -88,8 +88,6 @@ while True:
         pink_pentagon = pygame.draw.polygon(screen, (255, 0, 230), [(146, 300), (272, 370), (236, 495), (56, 495), (20, 370)])
         bang.draw()  
 
-    pygame.display.update()
-    clock.tick(60)
 
 
 

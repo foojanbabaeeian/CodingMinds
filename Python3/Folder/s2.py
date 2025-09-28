@@ -1,4 +1,6 @@
 import pygame
+import random
+
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -32,6 +34,7 @@ class Alberta(pygame.sprite.Sprite):
 
 
 
+
 class Kaitherine(pygame.sprite.Sprite):
     def __init__(self, image, x, y):
         pygame.sprite.Sprite.__init__(self)
@@ -43,22 +46,22 @@ class Kaitherine(pygame.sprite.Sprite):
         self.rect.y = y
 
     def update(self):
-        self.rect.x += 5
-        if self.rect.left > 500:
-            self.rect.right = 0
+        self.rect.x -= 5
+        if self.rect.right < 0:
+            self.rect.left = 500
+            self.rect.y = random.randint(0, 470)
 
 kai_image = pygame.image.load("kai.png")
 albert_image = pygame.image.load("albert.png")
 
 # I would like you to change where alberta and kai start
 
-albert
-Albertata = Alberta(albert_image)
+Albertata = Alberta(albert_image, 100, 100)
 Alberta_group = pygame.sprite.Group()
 Alberta_group.add(Albertata)
 
 
-kai = Kaitherine(kai_image)
+kai = Kaitherine(kai_image, 200, 200)
 kai_group = pygame.sprite.Group()
 kai_group.add(kai)
 
