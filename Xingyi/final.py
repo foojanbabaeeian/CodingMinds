@@ -27,7 +27,7 @@ st.title("🐾 Virtual Pet Chat")
 st.write("Talk to your adorable virtual pet! Feed them, play with them, or just chat!")
 
 # API Key - Put your OpenAI API key here
-openai.api_key = "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"
+openai.api_key = ""
 
 # Initialize conversation state
 if 'convo' not in st.session_state:
