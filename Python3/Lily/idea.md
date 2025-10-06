@@ -1,0 +1,13 @@
+Tetris 
+-coding function to generate one out of 7 blocks
+    -I-block   
+    -O-block 
+    -S-block 
+    -Z-block
+    -L-block 
+    -J-block 
+    -T-block
+- blocks slowly fall down 
+- grid for things to go, Width 10 blocks, height 20 blocks
+- if blocks in a line (10 blocks horizontal row) + points and disappear row
+- when blocks reach other block or ground stop moving
