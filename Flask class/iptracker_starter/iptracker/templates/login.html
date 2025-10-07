@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login (Teaching Demo)</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="card">
+    <h2>Login (teaching-only)</h2>
+    <p>This sets a session user. In production, replace with Firebase Auth.</p>
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+    <form method="POST">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="you@example.com" required>
+      <button type="submit">Continue</button>
+    </form>
+  </main>
+</body>
+</html>

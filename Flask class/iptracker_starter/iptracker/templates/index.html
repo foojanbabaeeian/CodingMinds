@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IP Tracker Demo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="card">
+    <h1>Welcome 👋</h1>
+    <p>This demo logs your IP, user-agent, and the page you visited to Firebase.</p>
+    <div class="notice">
+      We collect minimal data for educational purposes. See our <a href="{{ url_for('privacy') }}">Privacy Notice</a>.
+    </div>
+    <div class="actions">
+      <a class="button" href="{{ url_for('login') }}">Login (demo)</a>
+      <a class="button secondary" href="{{ url_for('dashboard') }}">Dashboard</a>
+    </div>
+  </main>
+</body>
+</html>

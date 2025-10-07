@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Privacy Notice</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="card">
+    <h2>Privacy Notice</h2>
+    <p>This educational demo logs your public IP, user-agent, page path, and a timestamp to a private Firebase Realtime Database.</p>
+    <ul>
+      <li>Purpose: classroom demonstration of logging/analytics.</li>
+      <li>Retention: records older than 30 days may be pruned.</li>
+      <li>Control: if logged in, you can delete records associated with your session user from the Dashboard.</li>
+      <li>Security: server-side writes with Firebase Admin SDK; database rules are locked down.</li>
+    </ul>
+    <p>For production, replace the teaching login with Firebase Authentication and consider anonymizing IPs.</p>
+  </main>
+</body>
+</html>

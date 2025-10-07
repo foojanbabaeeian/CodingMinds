@@ -1,0 +1,4 @@
+flask==3.0.0
+firebase-admin==6.3.0
+requests==2.32.3
+werkzeug==3.0.3
