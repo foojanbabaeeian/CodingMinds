@@ -310,7 +310,7 @@ while running:
           
           # Check if ship is completely sunk
           if check_ship_sunk(grid, ship_positions, row, col):
-            print("💥 SHIP COMPLETELY SUNK! (Turned RED)")
+            print("SHIP COMPLETELY SUNK! (Turned RED)")
             ships_sunk += 1
             
         elif cell.state == "hit" or cell.state == "miss" or cell.state == "sunk":
