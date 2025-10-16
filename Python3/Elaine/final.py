@@ -8,6 +8,15 @@
 # That's it! Super simple loop
 
 import pygame
+# 1
+from openai import OpenAI
+
+# 2
+client = OpenAI(
+    api_key = "<YOUR_API_KEY> "
+)
+
+
 
 class Button(pygame.sprite.Sprite):
   def __init__(self, image, scale, x, y):
@@ -45,12 +54,36 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 # 3, Display the buttons on the screen
 
 potato_img = pygame.image.load("potato.jpg")
-blueberry_img = pygame.image.load("blueberry.jpg")
+pesto_img = pygame.image.load("pesto.png")
+asparagus_img = pygame.image.load("asparagus.png")
+banana_img = pygame.image.load("banana.png")
+chimkins_img = pygame.image.load("chimkins.png")
+cream_cheese_img = pygame.image.load("cream_cheese.png")
+crepes_img = pygame.image.load("crepes.png")
+fish_img = pygame.image.load("fish.png")
+mus_turd_img = pygame.image.load("mus-turd.png")
+mushrooms_img = pygame.image.load("mushrooms.png")
+noods_img = pygame.image.load("noods.png")
+pineapple_img = pygame.image.load("pineapple.png")
+tomatoes_img = pygame.image.load("tomatoes.png")
 
-potato_btn = Button(potato_img, 1, 150, 250)
-blueberry_btn = Button(blueberry_img, 1, 350, 250)
-
-
+potato_btn = Button(potato_img, 0.5, 0, 100)
+pesto_btn = Button(pesto_img, 0.4, 0, 200)
+asparagus_btn = Button(asparagus_img, 0.4, 100, 150)
+banana_btn = Button(banana_img, 0.4, 100, 200)
+chimkins_btn = Button(chimkins_img, 0.4, 200, 50)
+cream_cheese_btn = Button(cream_cheese_img, 0.4, 200, 100)
+crepes_btn = Button(crepes_img, 0.4, 150, 250)
+fish_btn = Button(fish_img, 0.4, 150, 250)
+mus_turd_btn = Button(mus_turd_img, 0.4, 150, 250)
+mushrooms_btn = Button(mushrooms_img, 0.4, 150, 250)
+noods_btn = Button(noods_img, 0.4, 150, 250)
+pineapple_btn = Button(pineapple_img, 0.4, 150, 250)
+tomatoes_btn = Button(tomatoes_img, 0.4, 150, 250)
+# submit button
+submit_img = pygame.image.load("subscribe.png")
+submit_btn = Button(submit_img, 0.4, 350, 400)
+foods = []
 while True:
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
@@ -64,7 +97,58 @@ while True:
 
   if potato_btn.draw():
     print("Potato")
-  if blueberry_btn.draw():
-    print("Blueberry")
+    foods.append("potato")
+  if pesto_btn.draw():
+    print("Pesto")
+    foods.append("pesto")
+  if asparagus_btn.draw():
+    print("Asparagus")
+    foods.append("asparagus")
+  if banana_btn.draw():
+    print("Banana")
+    foods.append("banana")
+  if chimkins_btn.draw():
+    print("Chicken")
+    foods.append("chicken")
+  if cream_cheese_btn.draw():
+    print("Cream Cheese")
+    foods.append("cream cheese")
+  if crepes_btn.draw():
+    print("Crepes")
+    foods.append("crepes")
+  if fish_btn.draw():
+    print("Fish")
+    foods.append("fish")
+  if mus_turd_btn.draw():
+    print("Mustard")
+    foods.append("mustard")
+  if mushrooms_btn.draw():
+    print("Mushrooms")
+    foods.append("mushrooms")
+  if noods_btn.draw():
+    print("Noodles")
+    foods.append("noodles")
+  if pineapple_btn.draw():
+    print("Pineapple")
+    foods.append("pineapple")
+  if tomatoes_btn.draw():
+    print("Tomatoes")
+    foods.append("tomatoes")
+  
+
+    # 3
+  if submit_btn.draw():
+    user_prompt = f"We want to bake a food with these ingredients.{foods}  give us sugestions of all the foods we can be making with detailed description of how to make it NOW!"
+
+  # 4
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "user", "content": user_prompt}
+        ]
+    )
+
+  # 5
+    print(response.choices[0].message.content)
 
   clock.tick(60)
