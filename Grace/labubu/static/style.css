@@ -1,0 +1,98 @@
+body {
+  background-color: #fffaf0;
+  font-family: 'Poppins', sans-serif;
+  color: #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+}
+
+.title {
+  font-size: 2.8rem;
+  margin-bottom: 0;
+  color: #f08c9b;
+}
+
+.subtitle {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  color: #888;
+}
+
+.cat-container {
+  margin-bottom: 15px;
+}
+
+.cat {
+  width: 100px;
+  height: auto;
+  opacity: 0.9;
+}
+
+.timer-circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 20px;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  transform: rotate(-90deg);
+}
+
+circle {
+  fill: none;
+  stroke-width: 10;
+  stroke: #ffe0e6;
+}
+
+#progress {
+  stroke: #f08c9b;
+  stroke-linecap: round;
+  stroke-dasharray: 565.48;
+  stroke-dashoffset: 565.48;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.time {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: #444;
+}
+
+.controls button {
+  background-color: #f9c5d1;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+  background-color: #f08c9b;
+  color: white;
+}
+
+.quote {
+  margin-top: 20px;
+  font-style: italic;
+  color: #666;
+}

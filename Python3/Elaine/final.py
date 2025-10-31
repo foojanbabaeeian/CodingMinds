@@ -7,14 +7,15 @@
 # Display the result in a fun text box with animations
 # That's it! Super simple loop
 
+
+# write the name of each picture or like ingeredient on top of where it is showing
+# have the ingredients  be organized in a grid so its easier to see them all
+
 import pygame
 # 1
 from openai import OpenAI
 
 # 2
-client = OpenAI(
-    api_key = "<YOUR_API_KEY> "
-)
 
 
 
@@ -67,22 +68,22 @@ noods_img = pygame.image.load("noods.png")
 pineapple_img = pygame.image.load("pineapple.png")
 tomatoes_img = pygame.image.load("tomatoes.png")
 
-potato_btn = Button(potato_img, 0.5, 0, 100)
-pesto_btn = Button(pesto_img, 0.4, 0, 200)
-asparagus_btn = Button(asparagus_img, 0.4, 100, 150)
-banana_btn = Button(banana_img, 0.4, 100, 200)
-chimkins_btn = Button(chimkins_img, 0.4, 200, 50)
-cream_cheese_btn = Button(cream_cheese_img, 0.4, 200, 100)
-crepes_btn = Button(crepes_img, 0.4, 150, 250)
-fish_btn = Button(fish_img, 0.4, 150, 250)
-mus_turd_btn = Button(mus_turd_img, 0.4, 150, 250)
-mushrooms_btn = Button(mushrooms_img, 0.4, 150, 250)
-noods_btn = Button(noods_img, 0.4, 150, 250)
-pineapple_btn = Button(pineapple_img, 0.4, 150, 250)
-tomatoes_btn = Button(tomatoes_img, 0.4, 150, 250)
+potato_btn = Button(potato_img, 0.5, 10, 10)
+pesto_btn = Button(pesto_img, 0.2, 110, 10)
+asparagus_btn = Button(asparagus_img, 0.2, 210, 10)
+banana_btn = Button(banana_img, 0.3, 310, 10)
+chimkins_btn = Button(chimkins_img, 0.3, 410, 10)
+cream_cheese_btn = Button(cream_cheese_img, 0.2, 10, 110)
+crepes_btn = Button(crepes_img, 0.2, 110, 110)
+fish_btn = Button(fish_img, 0.2, 210, 110)
+mus_turd_btn = Button(mus_turd_img, 0.2, 310, 110)
+mushrooms_btn = Button(mushrooms_img, 0.2, 410, 110)
+noods_btn = Button(noods_img, 0.2, 10, 210)
+pineapple_btn = Button(pineapple_img, 0.4, 110, 210)
+tomatoes_btn = Button(tomatoes_img, 0.2, 210, 210)
 # submit button
 submit_img = pygame.image.load("subscribe.png")
-submit_btn = Button(submit_img, 0.4, 350, 400)
+submit_btn = Button(submit_img, 0.1, 350, 400)
 foods = []
 while True:
   for event in pygame.event.get():
@@ -138,7 +139,7 @@ while True:
 
     # 3
   if submit_btn.draw():
-    user_prompt = f"We want to bake a food with these ingredients.{foods}  give us sugestions of all the foods we can be making with detailed description of how to make it NOW!"
+    user_prompt = f"We want to bake a food with these ingredients.{foods}  give us sugestions of all the foods we can be making with detailed description of how to make it NOW! Make all of the dished be originated from france and be fancy and gourmet. Make fancy names for the dished and make sure they are unique and uncommen. You can give a whole meal with a dessert and appetizer. "
 
   # 4
     response = client.chat.completions.create(

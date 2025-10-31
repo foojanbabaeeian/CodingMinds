@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusFlow by Grace Chen</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">FocusFlow</h1>
+    <p class="subtitle">by Grace Chen</p>
+
+    <div class="cat-container">
+      <img src="{{ url_for('static', filename='cat.png') }}" alt="Cat" class="cat">
+    </div>
+
+    <div class="timer-circle">
+      <svg>
+        <circle cx="100" cy="100" r="90"></circle>
+        <circle id="progress" cx="100" cy="100" r="90"></circle>
+      </svg>
+      <div class="time" id="time">25:00</div>
+    </div>
+
+    <div class="controls">
+      <button id="startBtn">Start</button>
+      <button id="pauseBtn">Pause</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+
+    <p class="quote">"{{ quote }}"</p>
+  </div>
+
+  <script>
+    const FULL_DASH_ARRAY = 565.48;  // circumference of circle
+    const progress = document.getElementById("progress");
+    const timeDisplay = document.getElementById("time");
+
+    let totalTime = 25 * 60;
+    let timeLeft = totalTime;
+    let timer = null;
+    let running = false;
+
+    function updateTimer() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timeDisplay.textContent = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+      const progressFraction = (totalTime - timeLeft) / totalTime;
+      const offset = FULL_DASH_ARRAY * (1 - progressFraction);
+      progress.style.strokeDashoffset = offset;
+
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        running = false;
+        alert("Pomodoro complete! Time for a break 😺");
+      }
+    }
+
+    document.getElementById("startBtn").onclick = () => {
+      if (!running) {
+        running = true;
+        timer = setInterval(() => {
+          timeLeft--;
+          updateTimer();
+        }, 1000);
+      }
+    };
+
+    document.getElementById("pauseBtn").onclick = () => {
+      if (running) {
+        clearInterval(timer);
+        running = false;
+      } else {
+        running = true;
+        timer = setInterval(() => {
+          timeLeft--;
+          updateTimer();
+        }, 1000);
+      }
+    };
+
+    document.getElementById("resetBtn").onclick = () => {
+      clearInterval(timer);
+      running = false;
+      timeLeft = totalTime;
+      updateTimer();
+    };
+
+    // Initialize circle
+    progress.style.strokeDasharray = FULL_DASH_ARRAY;
+    progress.style.strokeDashoffset = FULL_DASH_ARRAY;
+    updateTimer();
+  </script>
+</body>
+</html>
