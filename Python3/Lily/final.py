@@ -30,15 +30,17 @@
 
 # We need to also show where the not found ships were with a different color
 
+# A1, b5, h8, coordiates grid
 
 BLUE  = (47, 91, 156) # background
-GRAY  = (93, 101, 105) # When hit water
+GRAY  = (85, 94, 99) # When hit water
 RED   = (207, 23, 23) # ships sunk
 YELLOW = (237, 201, 52) # hit ship
 BLACK = (0,0,0) # text color "LOSE" 
 WHITE = (255,255,255) # other text color 
 GREEN = (47, 158, 90) # "WIN"
-LIGHT_GRAY = (145, 145, 142) # unsunken ships reveal
+LIGHT_GRAY = (112, 134, 148) # unsunken ships reveal
+
 
 
 import pygame
@@ -218,7 +220,7 @@ def draw_ui(screen, bullets_left, ships_sunk, total_ships, game_status):
     screen.blit(win_text, (150, 250))
     
     small_font = pygame.font.Font(None, 28)
-    restart_text = small_font.render("Press R to Restart", True, WHITE)
+    restart_text = small_font.render("Press R to Restart", True, BLACK)
     screen.blit(restart_text, (165, 320))
     
   elif game_status == "LOSE":
@@ -227,7 +229,7 @@ def draw_ui(screen, bullets_left, ships_sunk, total_ships, game_status):
     screen.blit(lose_text, (140, 250))
     
     small_font = pygame.font.Font(None, 28)
-    restart_text = small_font.render("Press R to Restart", True, WHITE)
+    restart_text = small_font.render("Press R to Restart", True, BLACK)
     screen.blit(restart_text, (165, 320))
 
 
@@ -240,6 +242,15 @@ def draw_legend(screen):
   title = title_font.render("Legend:", True, WHITE)
   screen.blit(title, (x - 5, y - 30))
   
+# BLUE  = (47, 91, 156) # background water
+# GRAY  = (93, 101, 105) # When hit water
+# RED   = (207, 23, 23) # ships sunk
+# YELLOW = (237, 201, 52) # hit ship
+# BLACK = (0,0,0) # text color "LOSE" 
+# WHITE = (255,255,255) # other text color 
+# GREEN = (47, 158, 90) # "WIN"
+# LIGHT_GRAY = (145, 145, 142) # unsunken ships reveal
+
   # Water
   pygame.draw.rect(screen, BLUE, (x, y, 25, 25))
   pygame.draw.rect(screen, WHITE, (x, y, 25, 25), 2)
@@ -360,6 +371,13 @@ while running:
   
   # Check game over
   game_status = check_game_over(ships_sunk, total_ships, bullets_left)
+  # show them the ships that were not found
+  if game_status != "PLAYING":
+    for row in range(len(grid)):
+      for col in range(len(grid[0])):
+        cell = grid[row][col]
+        if cell.state == "ship":
+          cell.set_visual_color(LIGHT_GRAY)
   
   # Draw UI
   draw_ui(screen, bullets_left, ships_sunk, total_ships, game_status)

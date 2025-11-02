@@ -70,6 +70,7 @@ while True:
     #if up arrow, Lily
     elif keystate[pygame.K_UP]:
         rectangle = pygame.draw.circle(screen, (5, 89, 56), (200, 200),25)
+        print("o   O EEE ")
         Oo_ee.draw()
     #if down arrow, Elaine
     elif keystate[pygame.K_DOWN]:
