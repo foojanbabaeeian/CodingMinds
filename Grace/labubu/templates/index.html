@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FocusFlow by Grace Chen</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
@@ -11,8 +11,19 @@
     <h1 class="title">FocusFlow</h1>
     <p class="subtitle">by Grace Chen</p>
 
+    <div class="stats">
+      <div class="stat-item">
+        <span class="stat-number" id="sessions">{{ sessions }}</span>
+        <span class="stat-label">Sessions</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="streak">{{ streak }}</span>
+        <span class="stat-label">Day Streak</span>
+      </div>
+    </div>
+
     <div class="cat-container">
-      <img src="{{ url_for('static', filename='cat.png') }}" alt="Cat" class="cat">
+      <img src="{{ url_for('static', filename='bunny.png') }}" alt="Bunny" class="bunny" id="bunny">
     </div>
 
     <div class="timer-circle">
@@ -29,35 +40,65 @@
       <button id="resetBtn">Reset</button>
     </div>
 
-    <p class="quote">"{{ quote }}"</p>
+    <p class="quote" id="quote">{{ quote_focus }}</p>
   </div>
 
   <script>
-    const FULL_DASH_ARRAY = 565.48;  // circumference of circle
+    const FULL_DASH_ARRAY = 565.48;
     const progress = document.getElementById("progress");
     const timeDisplay = document.getElementById("time");
+    const quote = document.getElementById("quote");
+    const bunny = document.getElementById("bunny");
 
-    let totalTime = 25 * 60;
-    let timeLeft = totalTime;
-    let timer = null;
+    let focusTime = 25 * 60;
+    let breakTime = 5 * 60;
+    let timeLeft = focusTime;
+    let isBreak = false;
     let running = false;
+    let timer = null;
 
     function updateTimer() {
       const minutes = Math.floor(timeLeft / 60);
       const seconds = timeLeft % 60;
       timeDisplay.textContent = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-      const progressFraction = (totalTime - timeLeft) / totalTime;
+      const total = isBreak ? breakTime : focusTime;
+      const progressFraction = (total - timeLeft) / total;
       const offset = FULL_DASH_ARRAY * (1 - progressFraction);
       progress.style.strokeDashoffset = offset;
 
       if (timeLeft <= 0) {
         clearInterval(timer);
         running = false;
-        alert("Pomodoro complete! Time for a break 😺");
+        if (!isBreak) {
+          // Mark a completed session
+          fetch("/complete", {method: "POST"})
+            .then(response => response.json())
+            .then(data => {
+              document.getElementById("sessions").textContent = data.completed_sessions;
+              document.getElementById("streak").textContent = data.streak;
+            });
+
+          // Switch to break mode
+          isBreak = true;
+          timeLeft = breakTime;
+          document.body.classList.add("break-mode");
+          progress.style.stroke = "#C4EAD3";
+          quote.textContent = "{{ quote_break }}";
+          bunny.classList.add("hop");
+          setTimeout(startTimer, 2000);
+        } else {
+          // Return to focus mode
+          isBreak = false;
+          timeLeft = focusTime;
+          document.body.classList.remove("break-mode");
+          progress.style.stroke = "#f08c9b";
+          quote.textContent = "{{ quote_focus }}";
+          bunny.classList.remove("hop");
+        }
       }
     }
 
-    document.getElementById("startBtn").onclick = () => {
+    function startTimer() {
       if (!running) {
         running = true;
         timer = setInterval(() => {
@@ -65,29 +106,27 @@
           updateTimer();
         }, 1000);
       }
-    };
+    }
 
+    document.getElementById("startBtn").onclick = startTimer;
     document.getElementById("pauseBtn").onclick = () => {
       if (running) {
         clearInterval(timer);
         running = false;
-      } else {
-        running = true;
-        timer = setInterval(() => {
-          timeLeft--;
-          updateTimer();
-        }, 1000);
-      }
+      } else startTimer();
     };
-
     document.getElementById("resetBtn").onclick = () => {
       clearInterval(timer);
       running = false;
-      timeLeft = totalTime;
+      isBreak = false;
+      timeLeft = focusTime;
       updateTimer();
+      document.body.classList.remove("break-mode");
+      progress.style.stroke = "#f08c9b";
+      quote.textContent = "{{ quote_focus }}";
+      bunny.classList.remove("hop");
     };
 
-    // Initialize circle
     progress.style.strokeDasharray = FULL_DASH_ARRAY;
     progress.style.strokeDashoffset = FULL_DASH_ARRAY;
     updateTimer();

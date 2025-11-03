@@ -7,6 +7,11 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  transition: background-color 1s ease;
+}
+
+body.break-mode {
+  background-color: #e8fff4;
 }
 
 .container {
@@ -25,14 +30,21 @@ body {
   color: #888;
 }
 
-.cat-container {
-  margin-bottom: 15px;
-}
-
-.cat {
+.bunny {
   width: 100px;
   height: auto;
   opacity: 0.9;
+  transition: transform 0.3s;
+}
+
+.hop {
+  animation: hop 1s infinite alternate;
+}
+
+@keyframes hop {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
 }
 
 .timer-circle {
@@ -95,4 +107,29 @@ circle {
   margin-top: 20px;
   font-style: italic;
   color: #666;
+  transition: color 1s ease;
+}
+x
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f08c9b;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #777;
 }
