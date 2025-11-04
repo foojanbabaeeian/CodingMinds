@@ -7,42 +7,69 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+
+  <!-- 🌸 Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="{{ url_for('static', filename='bunny.png') }}" alt="Logo" class="nav-logo">
+      <span class="nav-title">FocusFlow</span>
+    </div>
+    <div class="nav-right">
+      <a href="#" class="nav-link active">Home</a>
+      <a href="#" class="nav-link">Journal</a>
+      <a href="#" class="nav-link">Music</a>
+      <a href="#" class="nav-link">Settings</a>
+    </div>
+  </nav>
+
+  <!-- 🌼 Main Content -->
   <div class="container">
-    <h1 class="title">FocusFlow</h1>
-    <p class="subtitle">by Grace Chen</p>
+    <div class="focus-card">
 
-    <div class="stats">
-      <div class="stat-item">
-        <span class="stat-number" id="sessions">{{ sessions }}</span>
-        <span class="stat-label">Sessions</span>
+      <h1 class="title">FocusFlow</h1>
+      <p class="subtitle">by Grace Chen</p>
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-number" id="sessions">{{ sessions }}</span>
+          <span class="stat-label">Sessions</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="streak">{{ streak }}</span>
+          <span class="stat-label">Day Streak</span>
+        </div>
       </div>
-      <div class="stat-item">
-        <span class="stat-number" id="streak">{{ streak }}</span>
-        <span class="stat-label">Day Streak</span>
+
+      <!-- Bunny -->
+      <div class="bunny-container"  >
+        <img src="{{ url_for('static', filename='bunny.png') }}" alt="Bunny" class="bunny" id="bunny">
       </div>
-    </div>
 
-    <div class="cat-container">
-      <img src="{{ url_for('static', filename='bunny.png') }}" alt="Bunny" class="bunny" id="bunny">
-    </div>
+      <!-- Timer Circle -->
+      <div class="timer-circle">
+        <svg>
+          <circle cx="100" cy="100" r="90"></circle>
+          <circle id="progress" cx="100" cy="100" r="90"></circle>
+        </svg>
+        <div class="time" id="time">25:00</div>
+      </div>
 
-    <div class="timer-circle">
-      <svg>
-        <circle cx="100" cy="100" r="90"></circle>
-        <circle id="progress" cx="100" cy="100" r="90"></circle>
-      </svg>
-      <div class="time" id="time">25:00</div>
-    </div>
+      <!-- Timer Controls -->
+      <div class="controls">
+        <button id="startBtn">Start</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="resetBtn">Reset</button>
+      </div>
 
-    <div class="controls">
-      <button id="startBtn">Start</button>
-      <button id="pauseBtn">Pause</button>
-      <button id="resetBtn">Reset</button>
-    </div>
+      <!-- Quote -->
+      <p class="quote" id="quote">{{ quote_focus }}</p>
 
-    <p class="quote" id="quote">{{ quote_focus }}</p>
-  </div>
+    </div> <!-- ✅ END focus-card -->
+  </div> <!-- ✅ END container -->
 
+
+  <!-- 🌸 Timer Script -->
   <script>
     const FULL_DASH_ARRAY = 565.48;
     const progress = document.getElementById("progress");

@@ -1,57 +1,112 @@
+@font-face {
+  font-family: "CozyFont";
+  src: url("/static/fonts/SuperJoyful.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 🌸 Global */
 body {
-  background-color: #fffaf0;
-  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #fffaf0 0%, #ffe6ea 100%);
+  font-family: "CozyFont", "Poppins", sans-serif;
   color: #444;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🌸 Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fdf6ec;
+  padding: 12px 40px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo {
+  width: 40px;
+  animation: hop 2s infinite ease-in-out;
+}
+
+.nav-title {
+  font-size: 1.8rem;
+  color: #f08c9b;
+  font-weight: bold;
+}
+
+.nav-right {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #777;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #f08c9b;
+  font-weight: 600;
+}
+
+@keyframes hop {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* 🌼 Main Content */
+.container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  transition: background-color 1s ease;
+  align-items: flex-start;
+  margin-top: 60px;
+  padding: 40px 0;
 }
 
-body.break-mode {
-  background-color: #e8fff4;
-}
-
-.container {
+/* 🌸 Focus Card */
+.focus-card {
+  background: #ffffffb8;
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   text-align: center;
+  width: 400px;
+  backdrop-filter: blur(10px);
 }
 
 .title {
-  font-size: 2.8rem;
-  margin-bottom: 0;
+  font-size: 2.4rem;
   color: #f08c9b;
+  margin-bottom: 0.5rem;
 }
 
 .subtitle {
   font-size: 1rem;
-  margin-bottom: 30px;
-  color: #888;
+  color: #777;
+  margin-bottom: 1.5rem;
 }
 
-.bunny {
-  width: 100px;
-  height: auto;
-  opacity: 0.9;
-  transition: transform 0.3s;
-}
-
-.hop {
-  animation: hop 1s infinite alternate;
-}
-
-@keyframes hop {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-}
-
+/* 🌿 Timer */
 .timer-circle {
   position: relative;
   width: 200px;
   height: 200px;
-  margin: 0 auto 20px;
+  margin: 20px auto;
 }
 
 svg {
@@ -86,50 +141,64 @@ circle {
   color: #444;
 }
 
+/* 🐰 Bunny Image */
+.bunny-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 20px 0;
+}
+
+.bunny {
+  width: 250px;         /* smaller default size */
+  height: auto;
+  opacity: 0.9;
+  transition: transform 0.3s ease;
+}
+
+/* optional cute hover wiggle */
+.bunny:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* hopping animation for break mode */
+.hop {
+  animation: hop 1s infinite alternate ease-in-out;
+}
+
+@keyframes hop {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* for very small screens */
+@media (max-width: 600px) {
+  .bunny {
+    width: 80px;
+  }
+}
+
+/* 🌼 Buttons */
 .controls button {
   background-color: #f9c5d1;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 10px 20px;
-  margin: 5px;
+  margin: 8px;
   font-size: 1rem;
-  color: #333;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  font-family: "CozyFont", sans-serif;
 }
 
 .controls button:hover {
   background-color: #f08c9b;
-  color: white;
+  color: #fff;
 }
 
+/* 🌸 Quote */
 .quote {
   margin-top: 20px;
   font-style: italic;
   color: #666;
-  transition: color 1s ease;
-}
-x
-.stats {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-bottom: 20px;
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.stat-number {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #f08c9b;
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  color: #777;
 }
