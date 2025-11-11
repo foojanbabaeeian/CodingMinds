@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FocusFlow by Grace Chen</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- 🌸 Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="{{ url_for('static', filename='bunny.png') }}" alt="Logo" class="nav-logo">
+      <span class="nav-title">FocusFlow</span>
+    </div>
+    <div class="nav-right">
+      <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+      <a href="{{ url_for('pomo') }}" class="nav-link active">Pomo</a>
+      <a href="#" class="nav-link">Bunny Streak</a>
+      <a href="#" class="nav-link">Music</a>
+      <a href="#" class="nav-link">Settings</a>
+    </div>
+  </nav>
+
+  <!-- 🌼 Main Content -->
+  <div class="container">
+    <div class="focus-card">
+
+      <h1 class="title">FocusFlow</h1>
+      <p class="subtitle">by Grace Chen</p>
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-number" id="sessions">{{ sessions }}</span>
+          <span class="stat-label">Sessions</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="streak">{{ streak }}</span>
+          <span class="stat-label">Day Streak</span>
+        </div>
+      </div>
+
+      <!-- Bunny -->
+      <div class="bunny-container"  >
+        <img src="{{ url_for('static', filename='bunny.png') }}" alt="Bunny" class="bunny" id="bunny">
+      </div>
+
+      <!-- Timer Circle -->
+      <div class="timer-circle">
+        <svg>
+          <circle cx="100" cy="100" r="90"></circle>
+          <circle id="progress" cx="100" cy="100" r="90"></circle>
+        </svg>
+        <div class="time" id="time">25:00</div>
+      </div>
+
+      <!-- Timer Controls -->
+      <div class="controls">
+        <button id="startBtn">Start</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+
+      <!-- Quote -->
+      <p class="quote" id="quote">{{ quote_focus }}</p>
+
+    </div> <!-- ✅ END focus-card -->
+  </div> <!-- ✅ END container -->
+
+
+  <!-- 🌸 Timer Script -->
+  <script>
+    const FULL_DASH_ARRAY = 565.48;
+    const progress = document.getElementById("progress");
+    const timeDisplay = document.getElementById("time");
+    const quote = document.getElementById("quote");
+    const bunny = document.getElementById("bunny");
+
+    let focusTime = 25 * 60;
+    let breakTime = 5 * 60;
+    let timeLeft = focusTime;
+    let isBreak = false;
+    let running = false;
+    let timer = null;
+
+    function updateTimer() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timeDisplay.textContent = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+      const total = isBreak ? breakTime : focusTime;
+      const progressFraction = (total - timeLeft) / total;
+      const offset = FULL_DASH_ARRAY * (1 - progressFraction);
+      progress.style.strokeDashoffset = offset;
+
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        running = false;
+        if (!isBreak) {
+          // Mark a completed session
+          fetch("/complete", {method: "POST"})
+            .then(response => response.json())
+            .then(data => {
+              document.getElementById("sessions").textContent = data.completed_sessions;
+              document.getElementById("streak").textContent = data.streak;
+            });
+
+          // Switch to break mode
+          isBreak = true;
+          timeLeft = breakTime;
+          document.body.classList.add("break-mode");
+          progress.style.stroke = "#C4EAD3";
+          quote.textContent = "{{ quote_break }}";
+          bunny.classList.add("hop");
+          setTimeout(startTimer, 2000);
+        } else {
+          // Return to focus mode
+          isBreak = false;
+          timeLeft = focusTime;
+          document.body.classList.remove("break-mode");
+          progress.style.stroke = "#f08c9b";
+          quote.textContent = "{{ quote_focus }}";
+          bunny.classList.remove("hop");
+        }
+      }
+    }
+
+    function startTimer() {
+      if (!running) {
+        running = true;
+        timer = setInterval(() => {
+          timeLeft--;
+          updateTimer();
+        }, 1000);
+      }
+    }
+
+    document.getElementById("startBtn").onclick = startTimer;
+    document.getElementById("pauseBtn").onclick = () => {
+      if (running) {
+        clearInterval(timer);
+        running = false;
+      } else startTimer();
+    };
+    document.getElementById("resetBtn").onclick = () => {
+      clearInterval(timer);
+      running = false;
+      isBreak = false;
+      timeLeft = focusTime;
+      updateTimer();
+      document.body.classList.remove("break-mode");
+      progress.style.stroke = "#f08c9b";
+      quote.textContent = "{{ quote_focus }}";
+      bunny.classList.remove("hop");
+    };
+
+    progress.style.strokeDasharray = FULL_DASH_ARRAY;
+    progress.style.strokeDashoffset = FULL_DASH_ARRAY;
+    updateTimer();
+  </script>
+</body>
+</html>

@@ -31,6 +31,7 @@ def save_data(data):
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=4)
 
+# home route
 @app.route("/")
 def home():
     quote_focus = random.choice(QUOTES_FOCUS)
@@ -61,6 +62,19 @@ def complete_session():
 
     save_data(data)
     return jsonify(data)
+
+# navigate to the pomo page
+@app.route("/pomo")
+def pomo():
+    quote_focus = random.choice(QUOTES_FOCUS)
+    quote_break = random.choice(QUOTES_BREAK)
+    user_data = load_data()
+    return render_template("pomo.html",
+                           quote_focus=quote_focus,
+                           quote_break=quote_break,
+                           sessions=user_data["completed_sessions"],
+                           streak=user_data["streak"])
+
 
 if __name__ == "__main__":
     app.run(debug=True)

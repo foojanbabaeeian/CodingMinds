@@ -15,148 +15,116 @@
       <span class="nav-title">FocusFlow</span>
     </div>
     <div class="nav-right">
-      <a href="#" class="nav-link active">Home</a>
-      <a href="#" class="nav-link">Journal</a>
+      <a href="{{ url_for('home') }}" class="nav-link active">Home</a>
+      <a href="{{ url_for('pomo') }}" class="nav-link">Pomo</a>
+      <a href="#" class="nav-link">Bunny Streak</a>
       <a href="#" class="nav-link">Music</a>
       <a href="#" class="nav-link">Settings</a>
     </div>
   </nav>
 
-  <!-- 🌼 Main Content -->
-  <div class="container">
-    <div class="focus-card">
+  <!-- 🌼 Main Content - Two Column Layout -->
+  <div class="home-container">
+    
+    <!-- LEFT SIDE -->
+    <div class="home-left">
+      <!-- Logo and Title -->
+      <div class="home-header">
+        <h1 class="home-title">FocusFlow</h1>
+        <p class="home-subtitle">by Grace Chen</p>
+      </div>
 
-      <h1 class="title">FocusFlow</h1>
-      <p class="subtitle">by Grace Chen</p>
+      <!-- Quote Section -->
+      <div class="quote-box">
+        <p class="quote-text" id="quote">{{ quote_focus }}</p>
+      </div>
 
-      <!-- Stats -->
-      <div class="stats">
-        <div class="stat-item">
-          <span class="stat-number" id="sessions">{{ sessions }}</span>
-          <span class="stat-label">Sessions</span>
+      <!-- Pet Bunny Box -->
+      <div class="pet-bunny-box">
+        <h3 class="pet-title">Your Pet Bunny</h3>
+        <div class="bunny-container">
+          <img src="{{ url_for('static', filename='bunny.png') }}" alt="Pet Bunny" class="pet-bunny" id="bunny">
         </div>
-        <div class="stat-item">
-          <span class="stat-number" id="streak">{{ streak }}</span>
-          <span class="stat-label">Day Streak</span>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="home-right">
+      <!-- Study Streak -->
+      <div class="streak-card">
+        <div class="streak-icon">🔥</div>
+        <div class="streak-info">
+          <p class="streak-label">Study Streak</p>
+          <p class="streak-number" id="streak">{{ streak }}</p>
+          <p class="streak-sublabel">days</p>
         </div>
       </div>
 
-      <!-- Bunny -->
-      <div class="bunny-container"  >
-        <img src="{{ url_for('static', filename='bunny.png') }}" alt="Bunny" class="bunny" id="bunny">
-      </div>
-
-      <!-- Timer Circle -->
-      <div class="timer-circle">
-        <svg>
-          <circle cx="100" cy="100" r="90"></circle>
-          <circle id="progress" cx="100" cy="100" r="90"></circle>
+      <!-- Clock Circle -->
+      <div class="clock-circle">
+        <svg class="clock-svg" viewBox="0 0 200 200">
+          <!-- Background circle -->
+          <circle cx="100" cy="100" r="95" class="clock-bg"></circle>
+          
+          <!-- Clock numbers -->
+          <text x="100" y="20" text-anchor="middle" class="clock-number">12</text>
+          <text x="180" y="105" text-anchor="middle" class="clock-number">3</text>
+          <text x="100" y="190" text-anchor="middle" class="clock-number">6</text>
+          <text x="20" y="105" text-anchor="middle" class="clock-number">9</text>
+          
+          <!-- Hour hand -->
+          <line x1="100" y1="100" x2="100" y2="60" class="hand hour-hand" id="hourHand"></line>
+          
+          <!-- Minute hand -->
+          <line x1="100" y1="100" x2="100" y2="30" class="hand minute-hand" id="minuteHand"></line>
+          
+          <!-- Center dot -->
+          <circle cx="100" cy="100" r="5" class="clock-center"></circle>
         </svg>
-        <div class="time" id="time">25:00</div>
+        
+        <!-- Digital time display -->
+        <div class="digital-time" id="digitalTime">00:00</div>
+        <p class="date-display" id="dateDisplay">Loading...</p>
       </div>
+    </div>
 
-      <!-- Timer Controls -->
-      <div class="controls">
-        <button id="startBtn">Start</button>
-        <button id="pauseBtn">Pause</button>
-        <button id="resetBtn">Reset</button>
-      </div>
+  </div> <!-- ✅ END home-container -->
 
-      <!-- Quote -->
-      <p class="quote" id="quote">{{ quote_focus }}</p>
-
-    </div> <!-- ✅ END focus-card -->
-  </div> <!-- ✅ END container -->
-
-
-  <!-- 🌸 Timer Script -->
+  <!-- 🌸 Clock Script -->
   <script>
-    const FULL_DASH_ARRAY = 565.48;
-    const progress = document.getElementById("progress");
-    const timeDisplay = document.getElementById("time");
-    const quote = document.getElementById("quote");
-    const bunny = document.getElementById("bunny");
-
-    let focusTime = 25 * 60;
-    let breakTime = 5 * 60;
-    let timeLeft = focusTime;
-    let isBreak = false;
-    let running = false;
-    let timer = null;
-
-    function updateTimer() {
-      const minutes = Math.floor(timeLeft / 60);
-      const seconds = timeLeft % 60;
-      timeDisplay.textContent = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-      const total = isBreak ? breakTime : focusTime;
-      const progressFraction = (total - timeLeft) / total;
-      const offset = FULL_DASH_ARRAY * (1 - progressFraction);
-      progress.style.strokeDashoffset = offset;
-
-      if (timeLeft <= 0) {
-        clearInterval(timer);
-        running = false;
-        if (!isBreak) {
-          // Mark a completed session
-          fetch("/complete", {method: "POST"})
-            .then(response => response.json())
-            .then(data => {
-              document.getElementById("sessions").textContent = data.completed_sessions;
-              document.getElementById("streak").textContent = data.streak;
-            });
-
-          // Switch to break mode
-          isBreak = true;
-          timeLeft = breakTime;
-          document.body.classList.add("break-mode");
-          progress.style.stroke = "#C4EAD3";
-          quote.textContent = "{{ quote_break }}";
-          bunny.classList.add("hop");
-          setTimeout(startTimer, 2000);
-        } else {
-          // Return to focus mode
-          isBreak = false;
-          timeLeft = focusTime;
-          document.body.classList.remove("break-mode");
-          progress.style.stroke = "#f08c9b";
-          quote.textContent = "{{ quote_focus }}";
-          bunny.classList.remove("hop");
-        }
-      }
+    function updateClock() {
+      const now = new Date();
+      
+      // Update digital time
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('digitalTime').textContent = `${hours}:${minutes}`;
+      
+      // Update date
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const dateStr = now.toLocaleDateString('en-US', options);
+      document.getElementById('dateDisplay').textContent = dateStr;
+      
+      // Calculate clock hands rotation
+      const seconds = now.getSeconds();
+      const minutes_val = now.getMinutes();
+      const hours_val = now.getHours() % 12;
+      
+      // Minute hand: 6 degrees per minute (360 / 60)
+      const minuteRotation = minutes_val * 6 + seconds * 0.1;
+      document.getElementById('minuteHand').style.transform = `rotate(${minuteRotation}deg)`;
+      document.getElementById('minuteHand').style.transformOrigin = '100px 100px';
+      
+      // Hour hand: 30 degrees per hour (360 / 12) + 0.5 degrees per minute
+      const hourRotation = hours_val * 30 + minutes_val * 0.5;
+      document.getElementById('hourHand').style.transform = `rotate(${hourRotation}deg)`;
+      document.getElementById('hourHand').style.transformOrigin = '100px 100px';
     }
-
-    function startTimer() {
-      if (!running) {
-        running = true;
-        timer = setInterval(() => {
-          timeLeft--;
-          updateTimer();
-        }, 1000);
-      }
-    }
-
-    document.getElementById("startBtn").onclick = startTimer;
-    document.getElementById("pauseBtn").onclick = () => {
-      if (running) {
-        clearInterval(timer);
-        running = false;
-      } else startTimer();
-    };
-    document.getElementById("resetBtn").onclick = () => {
-      clearInterval(timer);
-      running = false;
-      isBreak = false;
-      timeLeft = focusTime;
-      updateTimer();
-      document.body.classList.remove("break-mode");
-      progress.style.stroke = "#f08c9b";
-      quote.textContent = "{{ quote_focus }}";
-      bunny.classList.remove("hop");
-    };
-
-    progress.style.strokeDasharray = FULL_DASH_ARRAY;
-    progress.style.strokeDashoffset = FULL_DASH_ARRAY;
-    updateTimer();
+    
+    // Update clock immediately and then every second
+    updateClock();
+    setInterval(updateClock, 1000);
   </script>
+
 </body>
 </html>

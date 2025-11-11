@@ -69,7 +69,20 @@ body {
   50% { transform: translateY(-5px); }
 }
 
-/* 🌼 Main Content */
+/* 🌼 Main Content - Home Container */
+.home-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-top: 60px;
+  padding: 40px 20px;
+  gap: 60px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 🌼 Main Content - Pomo Container */
 .container {
   display: flex;
   justify-content: center;
@@ -78,7 +91,7 @@ body {
   padding: 40px 0;
 }
 
-/* 🌸 Focus Card */
+/* 🌸 Focus Card - Pomo Page */
 .focus-card {
   background: #ffffffb8;
   padding: 40px;
@@ -93,12 +106,325 @@ body {
   font-size: 2.4rem;
   color: #f08c9b;
   margin-bottom: 0.5rem;
+  margin-top: 0;
 }
 
 .subtitle {
   font-size: 1rem;
   color: #777;
   margin-bottom: 1.5rem;
+}
+
+/* Stats Display */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-number {
+  font-size: 2rem;
+  color: #f08c9b;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* 🌿 Timer - Pomo Page */
+.timer-circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  transform: rotate(-90deg);
+}
+
+circle {
+  fill: none;
+  stroke-width: 10;
+  stroke: #ffe0e6;
+}
+
+#progress {
+  stroke: #f08c9b;
+  stroke-linecap: round;
+  stroke-dasharray: 565.48;
+  stroke-dashoffset: 565.48;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.time {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: #444;
+}
+
+/* 🌼 Buttons */
+.controls button {
+  background-color: #f9c5d1;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  margin: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "CozyFont", sans-serif;
+}
+
+.controls button:hover {
+  background-color: #f08c9b;
+  color: #fff;
+}
+
+/* 🌸 Quote - Pomo Page */
+.quote {
+  margin-top: 20px;
+  font-style: italic;
+  color: #666;
+}
+
+
+/* 🌸 Left Side */
+.home-left {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  flex: 1;
+}
+
+.home-header {
+  text-align: center;
+}
+
+.home-title {
+  font-size: 2.8rem;
+  color: #f08c9b;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.home-subtitle {
+  font-size: 1.1rem;
+  color: #999;
+  margin: 0;
+}
+
+/* Quote Box */
+.quote-box {
+  background: #ffffffb8;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  backdrop-filter: blur(10px);
+}
+
+.quote-text {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Pet Bunny Box */
+.pet-bunny-box {
+  background: #ffffffb8;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.pet-title {
+  font-size: 1.5rem;
+  color: #f08c9b;
+  margin: 0 0 15px 0;
+}
+
+.pet-bunny {
+  width: 280px;
+  height: auto;
+  opacity: 0.95;
+  transition: transform 0.3s ease;
+}
+
+.pet-bunny:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* 🌸 Right Side */
+.home-right {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  flex: 1;
+  align-items: center;
+}
+
+/* Streak Card */
+.streak-card {
+  background: linear-gradient(135deg, #f9c5d1 0%, #f08c9b 100%);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(240, 140, 155, 0.2);
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  color: white;
+}
+
+.streak-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.streak-label {
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.95;
+}
+
+.streak-number {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.streak-sublabel {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.95;
+}
+
+/* Clock Circle */
+.clock-circle {
+  background: #ffffffb8;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+}
+
+.clock-svg {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+.clock-bg {
+  fill: none;
+  stroke: #ffe0e6;
+  stroke-width: 2;
+}
+
+.clock-number {
+  font-size: 16px;
+  font-weight: bold;
+  fill: #f08c9b;
+  font-family: "CozyFont", sans-serif;
+}
+
+.hand {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.hour-hand {
+  stroke: #f08c9b;
+  stroke-width: 4;
+}
+
+.minute-hand {
+  stroke: #f08c9b;
+}
+
+.clock-center {
+  fill: #f08c9b;
+}
+
+.digital-time {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #f08c9b;
+  margin: 15px 0 10px 0;
+  font-family: 'Courier New', monospace;
+}
+
+.date-display {
+  font-size: 0.95rem;
+  color: #777;
+  margin: 0;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 1024px) {
+  .home-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .home-left,
+  .home-right {
+    max-width: 400px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-container {
+    margin-top: 30px;
+    padding: 20px 10px;
+    gap: 20px;
+  }
+  
+  .home-title {
+    font-size: 2rem;
+  }
+  
+  .pet-bunny {
+    width: 200px;
+  }
+  
+  .streak-number {
+    font-size: 2.5rem;
+  }
+  
+  .clock-svg {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .digital-time {
+    font-size: 1.5rem;
+  }
 }
 
 /* 🌿 Timer */
