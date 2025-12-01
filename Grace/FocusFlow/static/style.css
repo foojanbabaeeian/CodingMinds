@@ -147,13 +147,13 @@ body {
   margin: 20px auto;
 }
 
-svg {
+.timer-circle svg {
   position: absolute;
   top: 0;
   left: 0;
   width: 200px;
   height: 200px;
-  transform: rotate(-90deg);
+  transform: rotate(0deg);
 }
 
 circle {
@@ -435,14 +435,6 @@ circle {
   margin: 20px auto;
 }
 
-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 200px;
-  transform: rotate(-90deg);
-}
 
 circle {
   fill: none;
