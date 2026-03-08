@@ -87,7 +87,7 @@ while True:
         messages=[
             {"role": "user", "content": bongo_prompt}
         ]
-    )\
+    )
 
     # 5
     print(response.choices[0].message.content)
